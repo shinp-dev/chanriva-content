@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/shinp-dev/chanriva-content/main/schema/cards.schema.json",
   "title": "Chanriva cards",
+  "$comment": "Card categories are app-defined and fixed to trivia, book, history, person, and collab. Introducing a new category requires an app update before publishing content that uses it. chanriva-content alone must not introduce new categories.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schemaVersion", "cards"],
@@ -16,7 +17,11 @@
         "required": ["id", "type", "title", "summary"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"},
-          "type": {"enum": ["trivia", "book", "history", "person", "collab"]},
+          "type": {
+            "type": "string",
+            "enum": ["trivia", "book", "history", "person", "collab"],
+            "description": "図鑑カテゴリ。現在は5種類固定。新カテゴリの追加は、ちゃんりばアプリ側の対応を伴うアプリ更新後に行う。chanriva-content単独では追加しない。"
+          },
           "rarity": {"enum": ["common", "rare", "special"]},
           "title": {"type": "string", "minLength": 1, "maxLength": 200},
           "summary": {"type": "string", "minLength": 1, "maxLength": 600},
