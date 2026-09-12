@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "packs": [
+    {
+      "id": "books",
+      "version": 2,
+      "url": "https://raw.githubusercontent.com/shinp-dev/chanriva-content/main/dist/books-v2.zip",
+      "sizeBytes": 970,
+      "sha256": "f7e9c1474b3785a4122b8841483a8ae95e25d2f5358258e22a253f5bbdd2af7a"
+    },
+    {
+      "id": "trivia",
+      "version": 2,
+      "url": "https://raw.githubusercontent.com/shinp-dev/chanriva-content/main/dist/trivia-v2.zip",
+      "sizeBytes": 2190,
+      "sha256": "83c32cb29a191ff0c6201452af80da8a96b89d5253a968f7990ff6c13e22abd2"
+    }
+  ]
+}
