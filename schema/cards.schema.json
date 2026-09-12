@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/shinp-dev/chanriva-content/main/schema/cards.schema.json",
+  "title": "Chanriva cards",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "cards"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "cards": {
+      "type": "array",
+      "maxItems": 5000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "title", "summary"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"},
+          "type": {"enum": ["trivia", "book", "history", "person", "collab"]},
+          "rarity": {"enum": ["common", "rare", "special"]},
+          "title": {"type": "string", "minLength": 1, "maxLength": 200},
+          "summary": {"type": "string", "minLength": 1, "maxLength": 600},
+          "body": {"type": "string", "minLength": 1, "maxLength": 8000},
+          "imagePath": {"type": "string", "pattern": "^assets/.+\\.(webp|png|jpg|jpeg)$", "maxLength": 256},
+          "seriesId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$", "maxLength": 128},
+          "tags": {"type": "array", "maxItems": 24, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 64}},
+          "attributes": {"type": "object", "maxProperties": 32, "additionalProperties": {"type": "string", "maxLength": 300}},
+          "sourceLabel": {"type": "string", "minLength": 1, "maxLength": 200},
+          "sourceUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+          "externalUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+          "sortOrder": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}
