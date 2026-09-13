@@ -120,6 +120,16 @@ def validate_index(index):
         require(url.scheme == "https" and url.hostname and not url.username and not url.password and not url.fragment and url.port in (None, 443), "Unsafe URL")
 
 
+def preserve_published_archive(published, candidate):
+    # ZIP headers and compression can differ between Python/zlib/OS versions. Never
+    # rewrite a published archive or its hash when the uncompressed source is identical.
+    def contents(raw):
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            return sorted((entry.filename, archive.read(entry)) for entry in archive.infolist())
+    require(contents(published) == contents(candidate), "Published version is immutable: increment version")
+    return published
+
+
 def build():
     dist = ROOT / "dist"
     dist.mkdir(exist_ok=True)
@@ -137,17 +147,20 @@ def build():
                 require(not file.is_symlink(), "Source symlink forbidden")
                 raw = encoded(manifest) if name == "manifest.json" else file.read_bytes()
                 info = zipfile.ZipInfo(name, (2026, 9, 13, 0, 0, 0))
+                info.create_system = 3
                 info.compress_type = zipfile.ZIP_DEFLATED
                 info.external_attr = 0o100644 << 16
                 archive.writestr(info, raw)
         raw = payload.getvalue()
         filename = f'{manifest["id"]}-v{manifest["version"]}.zip'
+        target = dist / filename
+        if target.exists():
+            raw = preserve_published_archive(target.read_bytes(), raw)
         descriptor = dict(id=manifest["id"], version=manifest["version"], sizeBytes=len(raw), sha256=hashlib.sha256(raw).hexdigest(),
                           url=f"https://raw.githubusercontent.com/shinp-dev/chanriva-content/main/opponents/dist/{filename}")
         validate_archive(raw, descriptor)
-        target = dist / filename
-        require(not target.exists() or target.read_bytes() == raw, "Published version is immutable: increment version")
-        target.write_bytes(raw)
+        if not target.exists():
+            target.write_bytes(raw)
         descriptors.append(descriptor)
     index = dict(schemaVersion=1, packs=descriptors)
     validate_index(index)

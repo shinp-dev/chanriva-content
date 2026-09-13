@@ -22,7 +22,8 @@ Older app versions ignore it. The matching app change is on
    change. Published ZIPs are immutable: do not overwrite or delete old versions to bypass validation.
 
 The main workflow builds and validates both independent catalogs. Opponent archives have deterministic
-timestamps; validation checks source/ZIP manifest and image equality. The app updates at Standard entry
+timestamps and platform headers; existing ZIP bytes are retained when their uncompressed source is identical,
+even across compression-library changes. Validation checks source/ZIP manifest and image equality. The app updates at Standard entry
 and switches the active catalog only after all packs validate. Failed updates retain the last catalog.
 
 ## Semantics and safety

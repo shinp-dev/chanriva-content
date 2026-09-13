@@ -48,6 +48,22 @@ class OpponentValidationTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             o.read_json('{"id":"animal","id":"other"}')
 
+    def test_published_archive_preserved_across_platform_and_compression_headers(self):
+        def make_zip(system, compression, content):
+            payload = io.BytesIO()
+            with zipfile.ZipFile(payload, "w") as archive:
+                entry = zipfile.ZipInfo("manifest.json")
+                entry.create_system = system
+                entry.compress_type = compression
+                archive.writestr(entry, content)
+            return payload.getvalue()
+        published = make_zip(0, zipfile.ZIP_DEFLATED, b"original")
+        candidate = make_zip(3, zipfile.ZIP_STORED, b"original")
+        self.assertNotEqual(published, candidate)
+        self.assertEqual(published, o.preserve_published_archive(published, candidate))
+        with self.assertRaises(ValueError):
+            o.preserve_published_archive(published, make_zip(3, zipfile.ZIP_STORED, b"changed"))
+
     def test_different_pack_with_shared_player_ids_is_valid(self):
         self.manifest["id"] = "beginner"
         self.manifest["home"] = dict(section="CHALLENGES", style="COMPACT", order=10)
