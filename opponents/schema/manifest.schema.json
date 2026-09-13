@@ -1,0 +1,407 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "title",
+    "description",
+    "banner",
+    "home",
+    "players"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "title": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 16,
+      "required": [
+        "en"
+      ],
+      "propertyNames": {
+        "pattern": "^[a-z]{2,3}$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512,
+        "pattern": "^[^\\x00-\\x1f\\x7f-\\x9f]+$"
+      }
+    },
+    "description": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 16,
+      "required": [
+        "en"
+      ],
+      "propertyNames": {
+        "pattern": "^[a-z]{2,3}$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512,
+        "pattern": "^[^\\x00-\\x1f\\x7f-\\x9f]+$"
+      }
+    },
+    "banner": {
+      "type": "string",
+      "maxLength": 160,
+      "pattern": "^assets/[a-z0-9_-]+\\.(png|webp|jpg|jpeg)$"
+    },
+    "home": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "section",
+        "style",
+        "order"
+      ],
+      "properties": {
+        "section": {
+          "enum": [
+            "FEATURED",
+            "CHALLENGES"
+          ]
+        },
+        "style": {
+          "enum": [
+            "HERO",
+            "COMPACT"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "minimum": -10000,
+          "maximum": 10000
+        }
+      }
+    },
+    "players": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "order",
+          "requires",
+          "ai",
+          "portrait",
+          "winImage",
+          "loseImage",
+          "unlockCelebration"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+          },
+          "name": {
+            "type": "object",
+            "minProperties": 1,
+            "maxProperties": 16,
+            "required": [
+              "en"
+            ],
+            "propertyNames": {
+              "pattern": "^[a-z]{2,3}$"
+            },
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512,
+              "pattern": "^[^\\x00-\\x1f\\x7f-\\x9f]+$"
+            }
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "requires": {
+            "type": "array",
+            "maxItems": 64,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+            }
+          },
+          "ai": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "edaxLevel",
+              "personality",
+              "moves",
+              "think",
+              "tension"
+            ],
+            "properties": {
+              "edaxLevel": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 4
+              },
+              "personality": {
+                "enum": [
+                  "NATURAL",
+                  "SERIOUS"
+                ]
+              },
+              "moves": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "openingWeights",
+                  "midgameWeights",
+                  "endgameWeights",
+                  "openingMaxScoreLoss",
+                  "endgameMaxScoreLoss",
+                  "midgamePly",
+                  "endgamePly"
+                ],
+                "properties": {
+                  "openingWeights": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "items": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "midgameWeights": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "items": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "endgameWeights": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "items": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "openingMaxScoreLoss": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 64
+                  },
+                  "endgameMaxScoreLoss": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 64
+                  },
+                  "midgamePly": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 59
+                  },
+                  "endgamePly": {
+                    "type": "integer",
+                    "minimum": 2,
+                    "maximum": 60
+                  }
+                }
+              },
+              "think": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "baseMs",
+                  "forcedMoveMs",
+                  "ambiguousGapThreshold",
+                  "ambiguousBonusMs",
+                  "riskyBestScoreThreshold",
+                  "riskyChoiceBonusMs",
+                  "allNegativeBonusMs",
+                  "manyMovesThreshold",
+                  "manyMovesBonusMs",
+                  "nonBestChoiceBonusMs",
+                  "endgameStartPly",
+                  "endgameBonusMs",
+                  "minMs",
+                  "maxMs"
+                ],
+                "properties": {
+                  "baseMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "forcedMoveMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "ambiguousGapThreshold": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 64
+                  },
+                  "ambiguousBonusMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "riskyBestScoreThreshold": {
+                    "type": "integer",
+                    "minimum": -64,
+                    "maximum": 64
+                  },
+                  "riskyChoiceBonusMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "allNegativeBonusMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "manyMovesThreshold": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 64
+                  },
+                  "manyMovesBonusMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "nonBestChoiceBonusMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "endgameStartPly": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 60
+                  },
+                  "endgameBonusMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "minMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  },
+                  "maxMs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5000
+                  }
+                }
+              },
+              "tension": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "ambiguousGapThreshold",
+                  "riskyBestScoreThreshold",
+                  "lowMobilityThreshold",
+                  "endgameStartPly",
+                  "tenseScore",
+                  "criticalScore"
+                ],
+                "properties": {
+                  "ambiguousGapThreshold": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 64
+                  },
+                  "riskyBestScoreThreshold": {
+                    "type": "integer",
+                    "minimum": -64,
+                    "maximum": 64
+                  },
+                  "lowMobilityThreshold": {
+                    "type": "integer",
+                    "minimum": 2,
+                    "maximum": 64
+                  },
+                  "endgameStartPly": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 60
+                  },
+                  "tenseScore": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 8
+                  },
+                  "criticalScore": {
+                    "type": "integer",
+                    "minimum": 2,
+                    "maximum": 9
+                  }
+                }
+              }
+            }
+          },
+          "portrait": {
+            "type": "string",
+            "maxLength": 160,
+            "pattern": "^assets/[a-z0-9_-]+\\.(png|webp|jpg|jpeg)$"
+          },
+          "winImage": {
+            "type": "string",
+            "maxLength": 160,
+            "pattern": "^assets/[a-z0-9_-]+\\.(png|webp|jpg|jpeg)$"
+          },
+          "loseImage": {
+            "type": "string",
+            "maxLength": 160,
+            "pattern": "^assets/[a-z0-9_-]+\\.(png|webp|jpg|jpeg)$"
+          },
+          "unlockCelebration": {
+            "enum": [
+              "NORMAL",
+              "MILESTONE"
+            ]
+          }
+        }
+      }
+    },
+    "availableFrom": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "availableUntil": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
