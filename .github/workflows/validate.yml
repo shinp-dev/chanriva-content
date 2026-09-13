@@ -18,10 +18,14 @@ jobs:
           python-version: "3.12"
       - run: python scripts/build.py
       - run: python scripts/validate.py
+      - run: pip install -r scripts/opponent-requirements.txt
+      - run: python scripts/opponents.py build
+      - run: python scripts/opponents.py validate
+      - run: python -m unittest discover -s scripts -p 'test_opponents.py'
       - name: Publish generated index and packs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          git add -A index.json dist
+          git add -A index.json dist opponents/index.json opponents/dist
           if git diff --cached --quiet; then
             exit 0
           fi

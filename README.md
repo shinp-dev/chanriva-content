@@ -2,6 +2,9 @@
 
 ちゃんりば Standard（ちゃんりばガチャ／リバーシ図鑑）向けの公開コンテンツ配信リポジトリです。
 
+AI対戦企画の配信は、独立した[Opponent Packs](opponents/README.md)を参照してください。
+カードとは別のindex/schema/ZIPとvalidatorを利用します。
+
 ## 配信構成
 
 - `index.json`: アプリが最初に取得する pack 一覧

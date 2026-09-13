@@ -1,0 +1,615 @@
+{
+  "schemaVersion": 1,
+  "id": "animal",
+  "version": 1,
+  "title": {
+    "en": "Animal Challenge",
+    "ja": "どうぶつチャレンジ"
+  },
+  "description": {
+    "en": "Eight animal opponents, from friendly to wild",
+    "ja": "やさしい姿から野生の姿まで、8体のどうぶつAIに挑戦"
+  },
+  "banner": "assets/banner.png",
+  "home": {
+    "section": "FEATURED",
+    "style": "HERO",
+    "order": 0
+  },
+  "players": [
+    {
+      "id": "chick",
+      "name": {
+        "en": "Chick",
+        "ja": "ひよこ"
+      },
+      "order": 1,
+      "requires": [],
+      "portrait": "assets/chick-win.webp",
+      "winImage": "assets/chick-win.webp",
+      "loseImage": "assets/chick-lose.webp",
+      "unlockCelebration": "NORMAL",
+      "ai": {
+        "edaxLevel": 1,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.05,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857
+          ],
+          "midgameWeights": [
+            0.1,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286
+          ],
+          "endgameWeights": [
+            0.2,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143
+          ],
+          "openingMaxScoreLoss": 30,
+          "endgameMaxScoreLoss": 18,
+          "midgamePly": 25,
+          "endgamePly": 50
+        },
+        "think": {
+          "baseMs": 520,
+          "forcedMoveMs": 160,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 180,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 220,
+          "allNegativeBonusMs": 360,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 100,
+          "nonBestChoiceBonusMs": 120,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 80,
+          "minMs": 100,
+          "maxMs": 1300
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    },
+    {
+      "id": "rabbit",
+      "name": {
+        "en": "Rabbit",
+        "ja": "うさぎ"
+      },
+      "order": 2,
+      "requires": [
+        "chick"
+      ],
+      "portrait": "assets/rabbit-win.webp",
+      "winImage": "assets/rabbit-win.webp",
+      "loseImage": "assets/rabbit-lose.webp",
+      "unlockCelebration": "NORMAL",
+      "ai": {
+        "edaxLevel": 1,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.1,
+            0.15,
+            0.15,
+            0.15,
+            0.15,
+            0.15,
+            0.15
+          ],
+          "midgameWeights": [
+            0.18,
+            0.1366666666666667,
+            0.1366666666666667,
+            0.1366666666666667,
+            0.1366666666666667,
+            0.1366666666666667,
+            0.1366666666666667
+          ],
+          "endgameWeights": [
+            0.3,
+            0.11666666666666665,
+            0.11666666666666665,
+            0.11666666666666665,
+            0.11666666666666665,
+            0.11666666666666665,
+            0.11666666666666665
+          ],
+          "openingMaxScoreLoss": 24,
+          "endgameMaxScoreLoss": 14,
+          "midgamePly": 25,
+          "endgamePly": 50
+        },
+        "think": {
+          "baseMs": 520,
+          "forcedMoveMs": 160,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 180,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 220,
+          "allNegativeBonusMs": 360,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 100,
+          "nonBestChoiceBonusMs": 120,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 80,
+          "minMs": 100,
+          "maxMs": 1300
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    },
+    {
+      "id": "koala",
+      "name": {
+        "en": "Koala",
+        "ja": "コアラ"
+      },
+      "order": 3,
+      "requires": [
+        "rabbit"
+      ],
+      "portrait": "assets/koala-win.webp",
+      "winImage": "assets/koala-win.webp",
+      "loseImage": "assets/koala-lose.webp",
+      "unlockCelebration": "NORMAL",
+      "ai": {
+        "edaxLevel": 1,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.13,
+            0.174,
+            0.174,
+            0.174,
+            0.174,
+            0.174
+          ],
+          "midgameWeights": [
+            0.24,
+            0.152,
+            0.152,
+            0.152,
+            0.152,
+            0.152
+          ],
+          "endgameWeights": [
+            0.4,
+            0.12,
+            0.12,
+            0.12,
+            0.12,
+            0.12
+          ],
+          "openingMaxScoreLoss": 18,
+          "endgameMaxScoreLoss": 10,
+          "midgamePly": 25,
+          "endgamePly": 50
+        },
+        "think": {
+          "baseMs": 520,
+          "forcedMoveMs": 160,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 180,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 220,
+          "allNegativeBonusMs": 360,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 100,
+          "nonBestChoiceBonusMs": 120,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 80,
+          "minMs": 100,
+          "maxMs": 1300
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    },
+    {
+      "id": "elephant",
+      "name": {
+        "en": "Elephant",
+        "ja": "ぞう"
+      },
+      "order": 4,
+      "requires": [
+        "koala"
+      ],
+      "portrait": "assets/elephant-win.webp",
+      "winImage": "assets/elephant-win.webp",
+      "loseImage": "assets/elephant-lose.webp",
+      "unlockCelebration": "NORMAL",
+      "ai": {
+        "edaxLevel": 1,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "midgameWeights": [
+            0.35,
+            0.1625,
+            0.1625,
+            0.1625,
+            0.1625
+          ],
+          "endgameWeights": [
+            0.55,
+            0.11249999999999999,
+            0.11249999999999999,
+            0.11249999999999999,
+            0.11249999999999999
+          ],
+          "openingMaxScoreLoss": 13,
+          "endgameMaxScoreLoss": 7,
+          "midgamePly": 25,
+          "endgamePly": 50
+        },
+        "think": {
+          "baseMs": 520,
+          "forcedMoveMs": 160,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 180,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 220,
+          "allNegativeBonusMs": 360,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 100,
+          "nonBestChoiceBonusMs": 120,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 80,
+          "minMs": 100,
+          "maxMs": 1300
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    },
+    {
+      "id": "wild-chick",
+      "name": {
+        "en": "Wild Chick",
+        "ja": "ワイルドひよこ"
+      },
+      "order": 5,
+      "requires": [
+        "elephant"
+      ],
+      "portrait": "assets/wild-chick-win.webp",
+      "winImage": "assets/wild-chick-win.webp",
+      "loseImage": "assets/wild-chick-lose.webp",
+      "unlockCelebration": "MILESTONE",
+      "ai": {
+        "edaxLevel": 2,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.05,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857,
+            0.1357142857142857
+          ],
+          "midgameWeights": [
+            0.1,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286,
+            0.1285714285714286
+          ],
+          "endgameWeights": [
+            0.2,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143,
+            0.1142857142857143
+          ],
+          "openingMaxScoreLoss": 8,
+          "endgameMaxScoreLoss": 4,
+          "midgamePly": 25,
+          "endgamePly": 50
+        },
+        "think": {
+          "baseMs": 520,
+          "forcedMoveMs": 160,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 180,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 220,
+          "allNegativeBonusMs": 360,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 100,
+          "nonBestChoiceBonusMs": 120,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 80,
+          "minMs": 100,
+          "maxMs": 1300
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    },
+    {
+      "id": "wild-rabbit",
+      "name": {
+        "en": "Wild Rabbit",
+        "ja": "ワイルドうさぎ"
+      },
+      "order": 6,
+      "requires": [
+        "wild-chick"
+      ],
+      "portrait": "assets/wild-rabbit-win.webp",
+      "winImage": "assets/wild-rabbit-win.webp",
+      "loseImage": "assets/wild-rabbit-lose.webp",
+      "unlockCelebration": "NORMAL",
+      "ai": {
+        "edaxLevel": 2,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.1,
+            0.15,
+            0.15,
+            0.15,
+            0.15,
+            0.15,
+            0.15
+          ],
+          "midgameWeights": [
+            0.18,
+            0.1366666666666667,
+            0.1366666666666667,
+            0.1366666666666667,
+            0.1366666666666667,
+            0.1366666666666667,
+            0.1366666666666667
+          ],
+          "endgameWeights": [
+            0.3,
+            0.11666666666666665,
+            0.11666666666666665,
+            0.11666666666666665,
+            0.11666666666666665,
+            0.11666666666666665,
+            0.11666666666666665
+          ],
+          "openingMaxScoreLoss": 6,
+          "endgameMaxScoreLoss": 3,
+          "midgamePly": 25,
+          "endgamePly": 50
+        },
+        "think": {
+          "baseMs": 520,
+          "forcedMoveMs": 160,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 180,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 220,
+          "allNegativeBonusMs": 360,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 100,
+          "nonBestChoiceBonusMs": 120,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 80,
+          "minMs": 100,
+          "maxMs": 1300
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    },
+    {
+      "id": "wild-koala",
+      "name": {
+        "en": "Wild Koala",
+        "ja": "ワイルドコアラ"
+      },
+      "order": 7,
+      "requires": [
+        "wild-rabbit"
+      ],
+      "portrait": "assets/wild-koala-win.webp",
+      "winImage": "assets/wild-koala-win.webp",
+      "loseImage": "assets/wild-koala-lose.webp",
+      "unlockCelebration": "NORMAL",
+      "ai": {
+        "edaxLevel": 2,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.13,
+            0.174,
+            0.174,
+            0.174,
+            0.174,
+            0.174
+          ],
+          "midgameWeights": [
+            0.24,
+            0.152,
+            0.152,
+            0.152,
+            0.152,
+            0.152
+          ],
+          "endgameWeights": [
+            0.4,
+            0.12,
+            0.12,
+            0.12,
+            0.12,
+            0.12
+          ],
+          "openingMaxScoreLoss": 4,
+          "endgameMaxScoreLoss": 2,
+          "midgamePly": 25,
+          "endgamePly": 50
+        },
+        "think": {
+          "baseMs": 520,
+          "forcedMoveMs": 160,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 180,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 220,
+          "allNegativeBonusMs": 360,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 100,
+          "nonBestChoiceBonusMs": 120,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 80,
+          "minMs": 100,
+          "maxMs": 1300
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    },
+    {
+      "id": "wild-elephant",
+      "name": {
+        "en": "Wild Elephant",
+        "ja": "ワイルドぞう"
+      },
+      "order": 8,
+      "requires": [
+        "wild-koala"
+      ],
+      "portrait": "assets/wild-elephant-win.webp",
+      "winImage": "assets/wild-elephant-win.webp",
+      "loseImage": "assets/wild-elephant-lose.webp",
+      "unlockCelebration": "NORMAL",
+      "ai": {
+        "edaxLevel": 2,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "midgameWeights": [
+            0.35,
+            0.1625,
+            0.1625,
+            0.1625,
+            0.1625
+          ],
+          "endgameWeights": [
+            0.55,
+            0.11249999999999999,
+            0.11249999999999999,
+            0.11249999999999999,
+            0.11249999999999999
+          ],
+          "openingMaxScoreLoss": 3,
+          "endgameMaxScoreLoss": 1,
+          "midgamePly": 25,
+          "endgamePly": 50
+        },
+        "think": {
+          "baseMs": 520,
+          "forcedMoveMs": 160,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 180,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 220,
+          "allNegativeBonusMs": 360,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 100,
+          "nonBestChoiceBonusMs": 120,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 80,
+          "minMs": 100,
+          "maxMs": 1300
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    }
+  ]
+}
