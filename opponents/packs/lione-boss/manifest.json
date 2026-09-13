@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "id": "lione-boss",
+  "version": 1,
+  "title": {
+    "en": "Challenge the King of Beasts",
+    "ja": "百獣の王への挑戦"
+  },
+  "description": {
+    "en": "A spectacular opening and endgame, backed by a king's instinct in the midgame",
+    "ja": "豪快な序盤と終盤、その一方で中盤のセンスは王者級"
+  },
+  "banner": "assets/banner.png",
+  "home": {
+    "section": "CHALLENGES",
+    "style": "HERO",
+    "order": 0
+  },
+  "players": [
+    {
+      "id": "lione",
+      "name": {
+        "en": "Lione, King of Beasts",
+        "ja": "百獣の王ライオーン"
+      },
+      "order": 1,
+      "requires": [],
+      "portrait": "assets/lione-normal.webp",
+      "winImage": "assets/lione-angry.webp",
+      "loseImage": "assets/lione-crying.webp",
+      "unlockCelebration": "MILESTONE",
+      "ai": {
+        "edaxLevel": 1,
+        "personality": "NATURAL",
+        "moves": {
+          "openingWeights": [
+            0.22,
+            0.18,
+            0.16,
+            0.14,
+            0.12,
+            0.10,
+            0.08
+          ],
+          "midgameWeights": [
+            0.68,
+            0.16,
+            0.07,
+            0.04,
+            0.025,
+            0.015,
+            0.01
+          ],
+          "endgameWeights": [
+            0.46,
+            0.20,
+            0.12,
+            0.08,
+            0.06,
+            0.05,
+            0.03
+          ],
+          "openingMaxScoreLoss": 24,
+          "endgameMaxScoreLoss": 8,
+          "midgamePly": 24,
+          "endgamePly": 48
+        },
+        "think": {
+          "baseMs": 420,
+          "forcedMoveMs": 120,
+          "ambiguousGapThreshold": 2,
+          "ambiguousBonusMs": 140,
+          "riskyBestScoreThreshold": 3,
+          "riskyChoiceBonusMs": 180,
+          "allNegativeBonusMs": 260,
+          "manyMovesThreshold": 8,
+          "manyMovesBonusMs": 80,
+          "nonBestChoiceBonusMs": 90,
+          "endgameStartPly": 44,
+          "endgameBonusMs": 100,
+          "minMs": 90,
+          "maxMs": 900
+        },
+        "tension": {
+          "ambiguousGapThreshold": 2,
+          "riskyBestScoreThreshold": 3,
+          "lowMobilityThreshold": 3,
+          "endgameStartPly": 44,
+          "tenseScore": 2,
+          "criticalScore": 4
+        }
+      }
+    }
+  ]
+}
